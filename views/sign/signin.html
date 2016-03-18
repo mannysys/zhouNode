@@ -1,0 +1,63 @@
+<%- layout('layout') %>
+<%- partial('sidebar') %>  <!-- 包含侧边栏 -->
+<div id="content">
+    <div class="panel">
+        <div class="header">
+            <ul class="breadcrumb">
+                <li><a href="/">首页</a><span class="divider">/</span></li>
+                <li>登录</li>
+            </ul>
+        </div>
+        <div class="inner">
+            <!-- 显示错误信息 -->
+            <% if(typeof(error) != 'undefined' && error){ %>
+            <div class="alert alert-error">
+                <strong><%=error%></strong>
+            </div>
+            <% } %>
+            <!-- 显示成功信息 -->
+            <% if(typeof(success) != 'undefined' && success){ %>
+            <div class="alert alert-error">
+                <strong><%=success%></strong>
+            </div>
+            <% } %>
+            <form action="/signin" method="post" id="signin_form" class="form-horizontal">
+                <div class="control-group">
+                    <label for="name" class="control-label">用户名</label>
+                    <div class="controls">
+                        <input type="text" name="name" id="name" class="input-xlarge"/>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label for="pass" class="control-label">密码</label>
+                    <div class="controls">
+                        <input type="password" name="pass" id="pass" class="input-xlarge"/>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <input type="submit" class="span-primary" value="登录"/>
+                    <input type="reset" class="span-info" value="重置表单"/>
+                    <a id="forgot_password" href='/search_pass'>忘记密码了?</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

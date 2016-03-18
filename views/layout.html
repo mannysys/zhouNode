@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Doucument</title>
+    <link rel="stylesheet" href="/public/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="/public/stylesheets/common.css">
+    <link rel="stylesheet" href="/public/stylesheets/style.css">
+    <link rel="stylesheet" href="/public/stylesheets/jquery.atwho.css">
+    <script src="/public/jquery-2.1.0.js"></script>
+    <script src="/public/bootstrap/js/bootstrap.js"></script>
+</head>
+<body>
+    <div class="navbar">
+        <%- partial('navbar') %> <!-- 显示顶部导航栏 -->
+    </div>
+    <div id="main">
+        <%- body %>  <!-- 将其它页面填充到这里（身体部分） -->
+    </div>
+</body>
+</html>

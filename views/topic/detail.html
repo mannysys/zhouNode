@@ -1,0 +1,72 @@
+<%-layout('layout')%>
+<div id="content">
+    <div class="panel">
+        <div class="header topic_header">
+            <span class="topic_full_title">
+                <%=topic.title%>
+            </span>
+            <div class="changes">
+                <span>作者：<%=topic.username%></span>
+                <span>发布时间：<%=topic.timeStr%></span>
+            </div>
+        </div>
+        <div class="inner topic">
+            <div class="topic_content">
+                <%-md.render(topic.content)%>
+            </div>
+        </div>
+    </div>
+    <!-- 评论 -->
+    <div class="panel">
+        <div class="header"><span><%=count%></span></div>
+        <div class="inner">
+            <%-partial('reply/list', {collection: replys, as: 'reply'})%>
+        </div>
+    </div>
+    <div class="panel">
+        <div class="header">
+            <span>添加回复</span>
+        </div>
+        <div class="inner reply">
+            <form action="/reply/reply" method="post" id="reply_form">
+                <input type="hidden" name="topicId" value="<%=topic._id%>">
+                <div class="markdown_editor in_editor">
+                    <div class="markdown_in_editor">
+                        <textarea name="t_content" id="" cols="30" rows="10" class="editor"></textarea>
+                        <div class="editor_buttons">
+                            <input type="submit" class="span-primary subimit_btn" value="回复">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<link rel="stylesheet" href="/public/libs/webuploader/webuploader.css"/>
+<link rel="stylesheet" href="/public/libs/editor/editor.css"/>
+<script src="/public/libs/markdownit.js"></script>
+<script src="/public/libs/webuploader/webuploader.withoutimage.js"></script>
+<script src="/public/libs/editor/editor.js"></script>
+<script src="/public/libs/editor/ext.js"></script>
+<script>
+    $(function(){
+        var editor = new Editor();
+        editor.render($('.editor')[0]);
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
