@@ -4,7 +4,7 @@
 var topicModel = require('../models/TopicModel');
 var eventproxy = require('eventproxy');
 var _ = require('lodash');
-var timeHelper = require('../time_helper');
+var tools = require('../common/tools');  //工具
 
 exports.index = function(req, res){
     //如果接转换整型数值失败就返回默认值为1
@@ -26,7 +26,7 @@ exports.index = function(req, res){
     topicModel.getTopics(query, option, function(err, topics){
         //将topics中时间格式进行转换,增加一个timeStr字段时间转换格式
         topics = _.map(topics, function(topic){
-            topic.timeStr = timeHelper.formatTime(topic.insertTime);
+            topic.timeStr = tools.formatDate(topic.insertTime);
             return topic;
         });
         //抛出事件topic_data_ok，携带查询的数据topics
@@ -40,7 +40,8 @@ exports.index = function(req, res){
     });
     //接收抛出的事件
     ep.all('topic_data_ok', 'page_count_ok', function(topics, pageCount){
-        res.render('index', {topics:topics, tab:tab, page:page, pageCount:pageCount});
+        //向视图模版传值
+        res.render('index', {topics:topics, tab:tab, page:page, pageCount:pageCount, current_user:req.session.user});
     });
 
 

@@ -16,7 +16,7 @@
             <% } %>
             <!-- 显示成功信息 -->
             <% if(typeof(success) != 'undefined' && success){ %>
-            <div class="alert alert-error">
+            <div class="alert alert-success">
                 <strong><%=success%></strong>
             </div>
             <% } %>
@@ -31,6 +31,7 @@
                     <div class="markdown_in_editor">
                         <textarea name="t_content" id="" cols="30" rows="10" class="editor"></textarea>
                         <div class="editor_buttons">
+                            <input type="hidden" name="_csrf" value="<%=csrf%>">
                             <input type="submit" class="span-primary subimit_btn" value="提交">
                         </div>
                     </div>

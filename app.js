@@ -10,12 +10,9 @@ var RedisStore = require('connect-redis')(session); //引人redis库,session存�
 var config = require('./config'); //引人自定义配置文件
 var MarkdownIt = require('markdown-it'); //转换markdown格式工具
 var busboy = require('connect-busboy'); //图片上传工具
-var md = new MarkdownIt();
-
-//var routes = require('./routes/index');
-//var users = require('./routes/users');
+var csrf = require('csurf');
 var webRouter = require('./routes/web_router');
-
+var md = new MarkdownIt();
 var app = express();
 
 // 设置视图模板引擎
@@ -24,7 +21,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'html');
 
 // 放置图标和公共资源 favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -52,7 +49,17 @@ app.use(function(req, res, next){
 });
 
 
-
+//将csrf令牌token加入中间件，存储到locals全局变量
+app.use(csrf({ cookie: true }),function (req, res, next) {
+  res.locals.csrf = req.csrfToken ? req.csrfToken() : '';
+  next();
+});
+// 处理csrf令牌token表单提交错误
+app.use(function (err, req, res, next) {
+  if (err.code !== 'EBADCSRFTOKEN') return next(err)
+  res.status(403);
+  res.send('status 500');
+});
 
 /*
  locals是个对象(也是变量)是贯穿在我们整个应用程序生命周期的
@@ -60,11 +67,7 @@ app.use(function(req, res, next){
  */
 app.locals.md = md; //markdown代码解析
 app.locals.config = config; //配置文件
-//app.use('/', routes);
-//app.use('/users', users);
-
 app.use('/', webRouter); //用户登录和注册路由加入中间价
-
 
 
 

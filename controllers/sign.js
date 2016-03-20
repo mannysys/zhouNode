@@ -3,7 +3,7 @@
  */
 var eventproxy = require('eventproxy');
 var UserModel = require('../models/UserModel');
-var crypto = require('crypto');
+var tools = require('../common/tools');
 
 //显示注册页面
 exports.showSignup = function(req, res){
@@ -47,8 +47,8 @@ exports.signup = function(req, res){
             ep.emit('info_error', '用户名或者邮箱被占用！');
             return;
         }
-        //生成密码的md5值,密码加密
-        var keypass = crypto.createHash('md5').update(pass).digest('hex');
+        //密码加密
+        var keypass = tools.encrypt(pass);
 
         //将数据保存到数据库
         UserModel.addUser({username:username, pass:keypass, email:email},function(err,result){
@@ -70,20 +70,19 @@ exports.showSignin = function(req, res){
 exports.signin = function(req, res){
     var username = req.body.name;
     var pass = req.body.pass;
-
     //校验数据
     if(!username || !pass){
         res.status(422);
         return res.render('sign/signin', {error: '您填写的信息不完整'});
     }
-    //生成密码的md5值,密码加密
-    var keypass = crypto.createHash('md5').update(pass).digest('hex');
+    //密码加密
+    var keypass = tools.encrypt(pass);
     //从数据库查询用户
     UserModel.getUser(username, keypass, function(err, user){
         //如果用户查询到，则将用户保存到session中
         if(user){
             req.session.user = user;
-            res.render('sign/signin', {success: '登陆成功'});
+            res.redirect('/'); //跳转到首页
         }else{
             res.status(422);
             res.render('sign/signin', {error: '用户名或者密码错误！'});

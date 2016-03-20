@@ -1,4 +1,5 @@
 <%- layout('layout') %>
+<%- partial('./sidebar') %>  <!-- 侧边栏 -->
 <div id="content">
   <div class="panel">
     <div class="header">
@@ -9,8 +10,8 @@
     <div class="inner">
       <div id="topic_list">
         <!--
-          collection指定传递的数据
-          将传递过来的topics数据再传递给list页面显示
+          collection指定遍历的数据
+          将topics数据循环再传递给list页面显示
           在list页面访问每一个数据as起个名字topic
         -->
         <%-partial('./topic/list', {collection: topics, as:'topic'})%>

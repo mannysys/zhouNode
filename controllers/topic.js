@@ -4,7 +4,7 @@
 var validator = require('validator');
 var TopicModel = require('../models/TopicModel');
 var eventproxy = require('eventproxy');
-var timeHelper = require('../time_helper');
+var tools = require('../common/tools');  //工具
 var ReplyModel = require('../models/ReplyModel');
 var _ = require('lodash');
 
@@ -47,7 +47,7 @@ exports.detail = function(req, res){
     var ep = new eventproxy(); //异步事件
 
     TopicModel.getTopic(topicId, function(err, topic){
-        topic.timeStr = timeHelper.formatTime(topic.insertTime);
+        topic.timeStr = tools.formatDate(topic.insertTime);
         ep.emit('topic_data_ok', topic);
     });
     //获取出文章评论总共多少条
@@ -57,7 +57,7 @@ exports.detail = function(req, res){
     //获取出文章评论列表
     ReplyModel.getReplys(topicId, function(err, replys){
         replys = _.map(replys, function(reply){
-            reply.timeStr = timeHelper.formatTime(reply.insertTime);
+            reply.timeStr = tools.formatDate(reply.insertTime);
             return reply;
         });
         ep.emit('replys_data_ok', replys);

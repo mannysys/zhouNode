@@ -17,7 +17,7 @@
             <% } %>
             <!-- 显示成功信息 -->
             <% if(typeof(success) != 'undefined' && success){ %>
-            <div class="alert alert-error">
+            <div class="alert alert-success">
                 <strong><%=success%></strong>
             </div>
             <% } %>
@@ -35,6 +35,7 @@
                     </div>
                 </div>
                 <div class="form-actions">
+                    <input type="hidden" name="_csrf" value="<%=csrf%>">
                     <input type="submit" class="span-primary" value="登录"/>
                     <input type="reset" class="span-info" value="重置表单"/>
                     <a id="forgot_password" href='/search_pass'>忘记密码了?</a>
