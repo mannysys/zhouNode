@@ -7,6 +7,7 @@
                 <li>发布话题</li>
             </ul>
         </div>
+
         <div class="inner">
             <!-- 显示错误信息 -->
             <% if(typeof(error) != 'undefined' && error){ %>
@@ -23,8 +24,12 @@
             <form action="/topic/create" method="post" id="create_topic_form">
                 <span class="tab-selector">选择板块：</span>
                 <select name="tab" id="tab-value">
-                    <option value="tab1">板块1</option>
-                    <option value="tab2">板块2</option>
+                    <%  config.tabs.forEach(function(pair){
+                        var value = pair[0];
+                        var text = pair[1];
+                        if(value !== 'all'){ %>
+                        <option value="<%=value%>"><%=text%></option>
+                    <% }}) %>
                 </select><br>
                 <input type="text" name="title" id="title" class="span9"/>
                 <div class="markdown_editor in_editor">

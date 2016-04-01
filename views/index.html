@@ -3,9 +3,12 @@
 <div id="content">
   <div class="panel">
     <div class="header">
-      <a href="/" class="topic-tab <% if(tab == 'all'){%>current-tab<% } %>">全部</a>
-      <a href="/?tab=tab1" class="topic-tab <% if(tab == 'tab1'){%>current-tab<% } %>">精华</a>
-      <a href="/?tab=tab2" class="topic-tab <% if(tab == 'tab2'){%>current-tab<% } %>">分享</a>
+      <% config.tabs.forEach(function(pair){
+         var value = pair[0];
+         var text = pair[1]; %>
+      <a href="<%=value ? '/?tab=' + value : '/' %>"
+         class="topic-tab <%=value === tab ? 'current-tab' : '' %>"><%=text%></a>
+      <% }) %>
     </div>
     <div class="inner">
       <div id="topic_list">

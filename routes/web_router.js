@@ -35,8 +35,11 @@ router.get('/signup', signController.showSignup)
     //处理用户评论上传的图片
     .post('/upload', auth.requireLogin, replyController.upload)
 
-    //用户设置
-    .get('/myset', auth.requireLogin, mysetController.myset);
+    //显示用户设置页面
+    .get('/myset', auth.requireLogin, mysetController.myset)
+    //处理用户设置修改
+    .post('/myset', auth.requireLogin, mysetController.setting);
+
 
 
 module.exports = router;

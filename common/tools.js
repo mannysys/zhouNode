@@ -4,6 +4,7 @@
 var moment = require('moment');
 var crypto = require('crypto');
 
+//过滤时间格式
 //exports.formatTime = function(time){
 //    return time.toLocaleDateString()
 //                + ' '
@@ -24,7 +25,10 @@ exports.encrypt = function(pass){
     return crypto.createHash('md5').update(pass).digest('hex');
 };
 
-
+//正则匹配大小写字母a-z或者数字0-9的字符串
+exports.validateId = function (str) {
+    return (/^[a-zA-Z0-9\-_]+$/i).test(str);
+};
 
 
 

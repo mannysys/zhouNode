@@ -48,7 +48,6 @@ app.use(function(req, res, next){
   next();
 });
 
-
 //将csrf令牌token加入中间件，存储到locals全局变量
 app.use(csrf({ cookie: true }),function (req, res, next) {
   res.locals.csrf = req.csrfToken ? req.csrfToken() : '';
