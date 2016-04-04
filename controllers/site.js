@@ -41,7 +41,7 @@ exports.index = function(req, res){
     //接收抛出的事件
     ep.all('topic_data_ok', 'page_count_ok', function(topics, pageCount){
         //向视图模版传值
-        res.render('index', {topics:topics, tab:tab, page:page, pageCount:pageCount, current_user:req.session.user});
+        res.render('index', {topics:topics, tab:tab, page:page, pageCount:pageCount});
     });
 
 

@@ -6,7 +6,7 @@
                 <%=topic.title%>
             </span>
             <div class="changes">
-                <span>作者：<%=topic.username%></span>
+                <span>作者：<%=topic.username.username%></span>
                 <span>发布时间：<%=topic.timeStr%></span>
             </div>
         </div>
@@ -34,6 +34,7 @@
                     <div class="markdown_in_editor">
                         <textarea name="t_content" id="" cols="30" rows="10" class="editor"></textarea>
                         <div class="editor_buttons">
+                            <input type="hidden" name="_csrf" value="<%=csrf%>">
                             <input type="submit" class="span-primary subimit_btn" value="回复">
                         </div>
                     </div>

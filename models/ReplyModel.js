@@ -9,7 +9,10 @@ var mongoose = require('./db').mongoose;
 var ReplySchema = new mongoose.Schema({
     topicId: String,
     content: String,
-    username: String,
+    username: {
+        type: mongoose.Schema.ObjectId, //该字段关联用户user集合
+        ref: 'User'  //指定关联User集合
+    },
     insertTime: Date
 });
 
@@ -21,7 +24,7 @@ ReplySchema.statics.addReply = function(reply, callback){
 
 //查询只返回一条数据
 ReplySchema.statics.getReplys = function(topicId, callback){
-    this.find({topicId: topicId}, callback);
+    this.find({topicId: topicId}).populate('username').exec(callback);
 };
 
 

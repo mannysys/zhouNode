@@ -1,7 +1,15 @@
 <div class="cell">
-    <span class="reply_author"><%=reply.username%></span>
+    <a href="#" class="user_avatar">
+        <img src="<%=config.site_avatar%><%=reply.username.avatar%>" title="<%=reply.username.username%>">
+    </a>
+    <span class="reply_author"><%=reply.username.username%></span>
     <span class="reply_time"><%=reply.timeStr%></span>
+    <div class="reply_content">
+        <div class="markdown-text">
+            <%-md.render(reply.content)%>
+        </div>
+    </div>
     <div>
-        <%-md.render(reply.content)%>
+
     </div>
 </div>

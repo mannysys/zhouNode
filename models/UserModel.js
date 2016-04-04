@@ -61,7 +61,11 @@ UserSchema.statics.getUserById = function(_id, callback){
     this.findById(_id, callback);
 };
 
-
+//查下用户头像
+UserSchema.statics.getUserAvatar = function(username, callback){
+    //查询只返回一条数据
+    this.findOne({username:username}, {avatar:1}, callback);
+};
 
 
 module.exports = mongoose.model('User', UserSchema); //生成数据模型

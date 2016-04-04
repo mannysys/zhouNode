@@ -1,17 +1,17 @@
 <div class="cell">
-    <a class="user_avatar pull-left" href="/user/<%=topic.username%>">
-        <img src="<%=config.site_avatar%><%=current_user.avatar%>" title="<%=topic.username%>">
+    <a class="user_avatar pull-left" href="#">
+        <img src="<%=config.site_avatar%><%=topic.username.avatar%>" title="<%=topic.username.username%>">
     </a>
     <span class="reply_count pull-left">
-        <span class="count_of_replies" title="回复数">39</span>
+        <span class="count_of_replies" title="">39</span>
         <span class="count_seperator">/</span>
-        <span class="count_of_visits" title="点击数">1940</span>
+        <span class="count_of_visits" title="">1940</span>
     </span>
 
     <a class="last_time pull-right">
         <span class="last_active_time"><%=topic.timeStr%></span>
     </a>
-    <span class="user_name pull-right"><%=topic.username%></span>
+    <span class="user_name pull-right"><%=topic.username.username%></span>
     <div class="topic_title_wrapper">
         <a href="/topic/<%=topic._id%>" class="topic_title"><%=topic.title%></a>
     </div>

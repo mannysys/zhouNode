@@ -4,7 +4,7 @@
 var moment = require('moment');
 var crypto = require('crypto');
 
-//¹ıÂËÊ±¼ä¸ñÊ½
+//æ ¼å¼åŒ–æ—¶é—´
 //exports.formatTime = function(time){
 //    return time.toLocaleDateString()
 //                + ' '
@@ -12,25 +12,23 @@ var crypto = require('crypto');
 //}
 
 
-moment.locale('zh-cn'); // Ê¹ÓÃÖĞÎÄ
-//¸ñÊ½»¯Ê±¼ä
+moment.locale('zh-cn'); //æ˜¾ç¤ºä¸­æ–‡
+//æ ¼å¼åŒ–æ—¶é—´å‡ å¤©å‰
 exports.formatDate = function(date){
     return moment(date).fromNow();
     //return date.format('YYYY-MM-DD HH:mm');
 };
 
 
-//Éú³ÉÃÜÂëµÄmd5Öµ,ÃÜÂë¼ÓÃÜ
+//å°†å¯†ç md5åŠ å¯†
 exports.encrypt = function(pass){
     return crypto.createHash('md5').update(pass).digest('hex');
 };
 
-//ÕıÔòÆ¥Åä´óĞ¡Ğ´×ÖÄ¸a-z»òÕßÊı×Ö0-9µÄ×Ö·û´®
+//éªŒè¯æ•°æ®
 exports.validateId = function (str) {
     return (/^[a-zA-Z0-9\-_]+$/i).test(str);
 };
-
-
 
 
 

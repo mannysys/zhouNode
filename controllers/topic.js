@@ -31,7 +31,7 @@ exports.create = function(req, res){
         title: title,
         content: content,
         tab: tab,
-        username: req.session.user.username,
+        username: req.session.user,
         insertTime: Date.now()
     };
     TopicModel.addTopic(topicData, function(err, result){

@@ -8,7 +8,7 @@ var ReplyModel = require('../models/ReplyModel');
 exports.addReply = function(req, res){
     var topicId = req.body.topicId;
     var content = req.body.t_content;
-    var username = req.session.user.username;
+    var username = req.session.user;
 
     //添加评论数据
     ReplyModel.addReply({

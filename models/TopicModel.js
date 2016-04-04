@@ -9,7 +9,10 @@ var TopicSchema = new mongoose.Schema({
     title: String,
     content: String,
     tab: String,
-    username: String,
+    username: {
+        type: mongoose.Schema.ObjectId, //该字段关联用户user集合
+        ref: 'User'  //指定关联User集合
+    },
     insertTime: Date
 });
 
@@ -20,12 +23,13 @@ TopicSchema.statics.addTopic = function(topic, callback){
 
 //列表数据
 TopicSchema.statics.getTopics = function(query, option, callback){
-    this.find(query, {}, option, callback);
+    this.find(query, {}, option).populate('username').exec(callback);
+
 };
 
 //查询文章详情内容
 TopicSchema.statics.getTopic = function(topicId, callback){
-    this.findOne({_id: topicId}, callback);
+    this.findOne({_id: topicId}).populate('username').exec(callback);
 };
 
 
