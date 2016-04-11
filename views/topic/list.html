@@ -3,11 +3,17 @@
         <img src="<%=config.site_avatar%><%=topic.username.avatar%>" title="<%=topic.username.username%>">
     </a>
     <span class="reply_count pull-left">
-        <span class="count_of_replies" title="">39</span>
-        <span class="count_seperator">/</span>
-        <span class="count_of_visits" title="">1940</span>
+        <!--<span class="count_of_replies" title="">39</span>-->
+        <!--<span class="count_seperator">/</span>-->
+        <!--<span class="count_of_visits" title="">1940</span>-->
+        <% config.tabs.forEach(function(pair){
+           var value = pair[0];
+           var text = pair[1];
+           if(value === topic.tab){ %>
+        <span class="topiclist-tab"><%=text%></span>
+        <% } %>
+        <% }) %>
     </span>
-
     <a class="last_time pull-right">
         <span class="last_active_time"><%=topic.timeStr%></span>
     </a>
