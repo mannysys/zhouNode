@@ -24,6 +24,8 @@ var server = http.createServer(app);
 /**
  * Listen on provided port, on all network interfaces.
  */
+// socket.io¼àÌý¶Ë¿Ú
+require('../lib/socket')(server);
 
 server.listen(port);
 server.on('error', onError);

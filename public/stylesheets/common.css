@@ -61,3 +61,69 @@ textarea {
 input, textarea {
     background: hsla(0, 0%, 0%, 0);
 }
+
+
+/*
+    弹幕样式
+*/
+.showDanmu{
+    width: 98.4%;
+    height: 620px;
+    border: 0;
+    overflow-y: scroll;
+    float: left;
+    list-style: none;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    line-height: 25px;
+}
+.rg{
+    background: #ff921a;
+    color: #fff;
+    padding: 3px 6px;
+    border-radius: 3px;
+}
+.nn{
+    color: #2b94ff;
+    margin-left: 5px;
+}
+.gs{
+    color: red;
+    font-weight: bold;
+}
+.hits{
+    color: red;
+    font-weight: bold;
+    margin-left: 10px;
+}
+/* 投票图表 */
+.vote-name{
+    width: 50px;
+    float: left;
+    margin-left: 15%;
+    text-align: center;
+}
+#chartsOne{
+
+    background: red;
+    margin-left: 15%;
+    color: white;
+    text-align: center;
+    font-size: 12px;
+}
+#chartsTwo{
+    width: 50px;
+    background: blue;
+    margin-left: 20%;
+    color: white;
+    text-align: center;
+    font-size: 12px;
+}
+#chartsThr{
+    width: 50px;
+    background: green;
+    margin-left: 20%;
+    color: white;
+    text-align: center;
+    font-size: 12px;
+}

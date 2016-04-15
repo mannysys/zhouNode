@@ -8,11 +8,9 @@ var engine = require('ejs-mate');
 var session = require('express-session');
 var RedisStore = require('connect-redis')(session); //引人redis库,session存放的地点和session关联起来
 var config = require('./config'); //引人自定义配置文件
-var MarkdownIt = require('markdown-it'); //转换markdown格式工具
 var busboy = require('connect-busboy'); //图片上传工具
 var csrf = require('csurf');
 var webRouter = require('./routes/web_router');
-var md = new MarkdownIt();
 var app = express();
 
 // 设置视图模板引擎
@@ -64,7 +62,6 @@ app.use(function (err, req, res, next) {
  locals是个对象(也是变量)是贯穿在我们整个应用程序生命周期的
  这个对象中属性，在我们整个视图层可以访问到的
  */
-app.locals.md = md; //markdown代码解析
 app.locals.config = config; //配置文件
 app.use('/', webRouter); //用户登录和注册路由加入中间价
 

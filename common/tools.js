@@ -29,6 +29,10 @@ exports.encrypt = function(pass){
 exports.validateId = function (str) {
     return (/^[a-zA-Z0-9\-_]+$/i).test(str);
 };
+//验证数据
+exports.checkRoom = function (num) {
+    return (/^[0-9]+$/i).test(num);
+};
 
 
 

@@ -40,7 +40,9 @@ exports.upload = function(req, res){
 
         //文件写完结束后，执行以下函数返回信息
         file.on('end', function(){
-            res.json({success: true, url: url});
+            var fullpath = req.headers.origin + url;
+            //res.json({success: true, url: url});
+            res.send(fullpath); //返回文件url绝对路径
 
         });
 

@@ -113,8 +113,10 @@ exports.signout = function(req, res){
     res.redirect('/'); //重定向到首页
 };
 
-
-
+//关于页面
+exports.showAbout = function(req, res){
+    res.render('sign/about');
+};
 
 
 

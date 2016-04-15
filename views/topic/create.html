@@ -1,4 +1,5 @@
 <%- layout('layout') %>
+
 <div id="content">
     <div class="panel">
         <div class="header">
@@ -34,7 +35,7 @@
                 <input type="text" name="title" id="title" class="span9"/>
                 <div class="markdown_editor in_editor">
                     <div class="markdown_in_editor">
-                        <textarea name="t_content" id="" cols="30" rows="10" class="editor"></textarea>
+                        <textarea id="editor-trigger" name="t_content" cols="30" rows="10" class="editor"></textarea>
                         <div class="editor_buttons">
                             <input type="hidden" name="_csrf" value="<%=csrf%>">
                             <input type="submit" class="span-primary subimit_btn" value="提交">
@@ -46,18 +47,43 @@
         </div>
     </div>
 </div>
-<link rel="stylesheet" href="/public/libs/webuploader/webuploader.css"/>
-<link rel="stylesheet" href="/public/libs/editor/editor.css"/>
-<script src="/public/libs/markdownit.js"></script>
-<script src="/public/libs/webuploader/webuploader.withoutimage.js"></script>
-<script src="/public/libs/editor/editor.js"></script>
-<script src="/public/libs/editor/ext.js"></script>
-<script>
-    $(function(){
-        var editor = new Editor();
-        editor.render($('.editor')[0]);
-    });
+
+<link rel="stylesheet" href="/public/wangEditor/css/wangEditor.min.css"/>
+<script src="/public/wangEditor/js/wangEditor.min.js"></script>
+<script type="text/javascript">
+    // 关闭输出log打印
+    wangEditor.config.printLog = false;
+    var editor = new wangEditor('editor-trigger');
+    // 自定义菜单
+    editor.config.menus =  [
+        'bold',
+        'underline',
+        'eraser',
+        'forecolor',
+        'bgcolor',
+        '|',
+        'quote',
+        'fontfamily',
+        'fontsize',
+        'unorderlist',
+        'orderlist',
+        'alignleft',
+        'aligncenter',
+        'alignright',
+        '|',
+        'link',
+        'unlink',
+        '|',
+        'img',
+        'video',
+        'fullscreen'
+    ];
+    // 上传图片
+    editor.config.uploadImgUrl = '/upload?_csrf=<%=csrf%>';
+    editor.create();
+
 </script>
+
 
 
 

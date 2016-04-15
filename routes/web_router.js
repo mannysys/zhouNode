@@ -5,6 +5,7 @@ var topicController = require('../controllers/topic');//话题控制器模块
 var siteController = require('../controllers/site'); //主页列表控制器模块
 var replyController = require('../controllers/reply'); //评论
 var mysetController = require('../controllers/myset'); //用户设置
+var acfunController = require('../controllers/acfun'); //斗鱼弹幕
 var auth = require('../middlewares/auth');//检测用户是否登录过中间件模块
 
 // 路由显示注册页面
@@ -38,8 +39,12 @@ router.get('/signup', signController.showSignup)
     //显示用户设置页面
     .get('/myset', auth.requireLogin, mysetController.myset)
     //处理用户设置修改
-    .post('/myset', auth.requireLogin, mysetController.setting);
+    .post('/myset', auth.requireLogin, mysetController.setting)
 
+    // 斗鱼弹幕页面
+    .get('/acfun', acfunController.showAcfun)
+    // 关于
+    .get('/about', signController.showAbout);
 
 
 module.exports = router;
