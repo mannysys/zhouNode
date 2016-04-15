@@ -1,0 +1,63 @@
+<div id="sidebar">
+    <div class='panel'>
+        <div class='header'>
+            <span class='col_fade'>全屏</span>
+        </div>
+        <div class='inner'>
+            <p><a class="dark" id="fullview" href="#">弹幕全屏</a></p>
+        </div>
+        <p></p>
+        <div class='header'>
+            <span class='col_fade'>显示字体</span>
+        </div>
+        <div class='inner'>
+            <p><a class="dark" id="font-default" href="#">默认</a></p>
+            <p><a class="dark" id="font-large" href="#">超大</a></p>
+            <p><a class="dark" id="font-small" href="#">中等</a></p>
+        </div>
+        <p></p>
+        <div class='header'>
+            <span class='col_fade'>弹幕投票</span>
+        </div>
+        <div class="inner">
+            <a href="#" id="create_topic_btn">
+                <span id="acfunModal" class="span-success">开始投票</span>
+            </a>
+            <p>
+                提示：开始点击按钮后，将开始统计弹幕数据。
+                统计弹幕为1-3的一位数字生效
+            </p>
+            <p>
+                <p>输入投票名称对应投票的弹幕：</p>
+                <p>1&nbsp;<input type="text" name="vote1" class="form-control"></p>
+                <p>2&nbsp;<input type="text" name="vote2" class="form-control"></p>
+                <p>3&nbsp;<input type="text" name="vote3" class="form-control"></p>
+            </p>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="modal fade" id="showAcfunModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">投票统计</h4>
+            </div>
+            <div class="modal-body">
+                <label class="vote-name one"><span></span>
+                <div id="chartsOne"><strong>0</strong></div></label>
+                <label class="vote-name two"><span></span>
+                <div id="chartsTwo"><strong>0</strong></div></label>
+                <label class="vote-name thr"><span></span>
+                <div id="chartsThr"><strong>0</strong></div></label>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+
