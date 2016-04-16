@@ -5,14 +5,13 @@ var config = {
   site_avatar: '/public/images/avatar/', //头像路径
 
 
-
   //板块
   tabs: [
       ['all', '全部'],
-      ['share', '分享'],
-      ['ask', '问答'],
-      ['task', '任务'],
-      ['shop','宝购']
+      ['tucao', '吐槽'],
+      ['zhubo', '主播'],
+      ['fenxiang', '分享'],
+      ['gonggao','公告']
   ]
 
 

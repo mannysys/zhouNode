@@ -4,6 +4,7 @@
 var path = require('path');
 var fs = require('fs');
 var ReplyModel = require('../models/ReplyModel');
+var tools = require('../common/tools');
 
 exports.addReply = function(req, res){
     var topicId = req.body.topicId;
@@ -33,10 +34,26 @@ exports.upload = function(req, res){
         // new Date().getTime()表示当前时间戳，然后转换字符串
         // path.extname获取文件的后缀名
         var newFilename = String(new Date().getTime()) + path.extname(filename);
-        var filePath = __dirname + '/../public/upload/' + newFilename;
-        var url = '/public/upload/' + newFilename; //上传文件新的路径
-        //将文件转换成管道形式，以流的形式写进指定路径
-        file.pipe(fs.createWriteStream(filePath));
+        // 当前日期
+        var nowDate = tools.formatDateFile(new Date());
+        var filePath = __dirname + '/../public/upload/' + nowDate + '/' +newFilename;
+        var url = '/public/upload/' + nowDate + '/' +newFilename; //上传文件新的路径
+        // 检查目录路径
+        var dirPath = __dirname + '/../public/upload/' + nowDate;
+        fs.exists(dirPath, function(exists){
+            if(exists){
+                //将文件转换成管道形式，以流的形式写进指定路径
+                file.pipe(fs.createWriteStream(filePath));
+            }else{
+                fs.mkdir(dirPath, function(err){
+                    if(err){
+                        return err;
+                    }
+                    //将文件转换成管道形式，以流的形式写进指定路径
+                    file.pipe(fs.createWriteStream(filePath));
+                });
+            }
+        });
 
         //文件写完结束后，执行以下函数返回信息
         file.on('end', function(){

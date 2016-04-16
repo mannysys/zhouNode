@@ -16,7 +16,9 @@ moment.locale('zh-cn'); //显示中文
 //格式化时间几天前
 exports.formatDate = function(date){
     return moment(date).fromNow();
-    //return date.format('YYYY-MM-DD HH:mm');
+};
+exports.formatDateFile = function(date){
+    return moment(date).format('YYYYMMDD');
 };
 
 

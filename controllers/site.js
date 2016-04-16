@@ -18,7 +18,7 @@ exports.index = function(req, res){
         query.tab = tab;
     }
     var ep = new eventproxy();
-    var count = 10;
+    var count = 40;
     // 在查询数据时skip表示跳过(page-1)*count
     // limit表示选择10条查询数据
     //-insertTime表示按时间倒序排序

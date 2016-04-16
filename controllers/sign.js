@@ -56,7 +56,14 @@ exports.signup = function(req, res){
             return;
         }
         var keypass = tools.encrypt(pass);//密码加密
-        var default_avatar=['avatar_default_1.png','avatar_default_2.png','avatar_default_3.png'];
+        var default_avatar=[
+            'avatar_default_1.png',
+            'avatar_default_2.png',
+            'avatar_default_3.png',
+            'avatar_default_4.png',
+            'avatar_default_5.png',
+            'avatar_default_6.png'
+        ];
         var random_num = Math.floor((Math.random()*default_avatar.length));
 
         //将数据保存到数据库

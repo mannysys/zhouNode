@@ -68,7 +68,6 @@ app.use('/', webRouter); //用户登录和注册路由加入中间价
 
 
 
-
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
@@ -78,17 +77,17 @@ app.use(function(req, res, next) {
 
 
 // 开发环境下错误处理，将打印堆栈跟踪
-if (app.get('env') === 'development') {
-  app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('error', {
-      message: err.message,
-      error: err
-    });
-  });
-}
+//if (app.get('env') === 'development') {
+//  app.use(function(err, req, res, next) {
+//    res.status(err.status || 500);
+//    res.render('error', {
+//      message: err.message,
+//      error: err
+//    });
+//  });
+//}
 
-// 生成环境下错误处理
+// 生产环境下错误处理
 app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error', {
