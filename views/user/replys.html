@@ -1,0 +1,14 @@
+<div class="cell">
+    <!--<a class="user_avatar pull-left" href="/user/<%=reply.username._id%>" style="margin-right:20px;">-->
+        <!--<img src="<%=config.site_avatar%><%=reply.username.avatar%>" title="<%=reply.username.username%>">-->
+    <!--</a>-->
+    <a class="user_avatar pull-left" href="/topic/<%=reply.topicId%>" style="margin-right:20px;">
+        查看参与话题
+    </a>
+    <span class="last_time pull-right">
+        <span class="last_active_time"><%=reply.timeStr%></span>
+    </span>
+    <div class="topic_title_wrapper">
+        <%-reply.content%>
+    </div>
+</div>

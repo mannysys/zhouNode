@@ -10,7 +10,7 @@ var UserSchema = new mongoose.Schema({
     email: String,          //邮箱
     location: String,       //所在地
     avatar: String,         //头像地址
-    signature: String,      //签名
+    signature: {type: String, default: '这家伙很懒，什么个性签名都没有留下。'},//签名
     weibo: String,          //微博
     create_at: {type: Date, default: Date.now },   //注册时间
     update_at: {type: Date, default: Date.now },   //更新时间
@@ -61,11 +61,7 @@ UserSchema.statics.getUserById = function(_id, callback){
     this.findById(_id, callback);
 };
 
-//查下用户头像
-UserSchema.statics.getUserAvatar = function(username, callback){
-    //查询只返回一条数据
-    this.findOne({username:username}, {avatar:1}, callback);
-};
+
 
 
 module.exports = mongoose.model('User', UserSchema); //生成数据模型

@@ -20,7 +20,7 @@
                 <strong><%=success%></strong>
             </div>
             <% } %>
-            <form id="setting_form" class="form-horizontal" action="/upload" method="post" enctype="multipart/form-data">
+            <form id="setting_form" class="form-horizontal" action="/myset" method="post">
                 <div class="control-group">
                     <label class="control-label" for="name">用户名</label>
                     <div class="controls">
@@ -31,6 +31,17 @@
                     <label class="control-label" for="email">电子邮件</label>
                     <div class="controls">
                         <input class="input-xlarge readonly" id="email" name="email" type="text" readonly="true" value="<%=current_user.email%>">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="location">头像</label>
+                    <div class="controls user_card">
+                        <% config.default_avatar.forEach(function(uavatar){ %>
+                        <a class="user_avatar" href="#" name="<%=uavatar%>">
+                            <img src="<%=config.site_avatar%><%=uavatar%>">
+                        </a>
+                        <% }) %>
+                        <input type="hidden" name="defaultAvatar" id="defaultAvatar" value="<%=current_user.avatar%>">
                     </div>
                 </div>
 
@@ -92,3 +103,15 @@
     </div>
 
 </div>
+
+
+<script>
+    $('.user_avatar').on('click', function(){
+        $('.user_avatar').find('img').removeAttr('style');
+        $(this).find('img').css({
+            'border-radius': '5px',
+            'border': '5px solid #0088cc'
+        });
+        $('#defaultAvatar').val($(this).attr('name'));
+    });
+</script>

@@ -12,8 +12,31 @@ var config = {
       ['zhubo', '主播'],
       ['fenxiang', '分享'],
       ['gonggao','公告']
-  ]
+  ],
 
+  //默认头像
+  default_avatar: [
+        'avatar_default_1.png',
+        'avatar_default_2.png',
+        'avatar_default_3.png',
+        'avatar_default_4.png',
+        'avatar_default_5.png',
+        'avatar_default_6.png',
+        'avatar_default_7.png',
+        'avatar_default_8.png',
+        'avatar_default_9.png',
+        'avatar_default_10.png',
+        'avatar_default_11.png',
+        'avatar_default_12.png',
+        'avatar_default_13.png',
+        'avatar_default_14.png',
+        'avatar_default_15.png',
+        'avatar_default_16.png',
+        'avatar_default_17.png',
+        'avatar_default_18.png',
+        'avatar_default_19.png',
+        'avatar_default_20.png'
+  ]
 
 
 

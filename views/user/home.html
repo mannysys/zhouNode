@@ -1,0 +1,61 @@
+<%- layout('layout') %>
+<%- partial('../sidebar') %>  <!-- 侧边栏 -->
+<div id="content">
+    <div class="panel">
+        <div class="header">
+            <ul class="breadcrumb">
+                <li><a href="/">主页</a><span class="divider">/</span></li>
+            </ul>
+        </div>
+        <div class="inner userinfo">
+            <div class="user_big_avatar">
+                <img src="<%=config.site_avatar%><%=current_user.avatar%>" class="user_avatar" title="<%=current_user.username%>">
+            </div>
+            <a class="dark"><%=current_user.username%></a>
+
+            <div class="user_profile">
+                <ul class="unstyled">
+                    鱼蛋：<span class="big"><%=current_user.score%></span>
+                    <li>
+                        <i class="fa fa-lg fa-fw fa-github"></i>
+                        微博：
+                        <a class="dark" href="<%=typeof(current_user.weibo) !== 'undefined' ? current_user.weibo : 'http://weibo.com/'%>" target="_blank">
+                            <%=typeof(current_user.weibo) !== 'undefined' ? current_user.weibo : 'http://weibo.com/'%>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col_fade">级别：<%=current_user.level%></div>
+            <div class="col_fade">位置：<%=typeof(current_user.location) !== 'undefined' ? current_user.location : '未知'%></div>
+            <div class="col_fade">注册时间：<%=current_user.create_at%></div>
+        </div>
+    </div>
+
+    <div class="panel">
+        <div class="header">
+            <span class="col_fade">最近创建的话题</span>
+        </div>
+        <!--
+          collection指定遍历的数据
+          将userTopic数据循环再传递给list页面显示
+          在list页面访问每一个数据as起个名字topic
+        -->
+        <%-partial('./topics', {collection: userTopic, as:'topic'})%>
+
+        <!--<div class="cell more">-->
+            <!--<a class="dark" href="/user/mannysys/topics">查看更多»</a>-->
+        <!--</div>-->
+    </div>
+
+    <div class="panel">
+        <div class="header">
+            <span class="col_fade">我的评论</span>
+        </div>
+
+        <%-partial('./replys', {collection: userReply, as:'reply'})%>
+
+        <!--<div class="cell more">-->
+            <!--<a class="dark" href="/user/mannysys/replies">查看更多»</a>-->
+        <!--</div>-->
+    </div>
+</div>

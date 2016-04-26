@@ -7,23 +7,21 @@
         <div class='inner'>
             <div class="user_card">
                 <div>
-                    <a class="user_avatar" href="/user/mannysys">
-                        <img src="<%=config.site_avatar%><%=current_user.avatar%>" title="">
+                    <a class="user_avatar" href="/user/<%=current_user._id%>">
+                        <img src="<%=config.site_avatar%><%=current_user.avatar%>" title="<%=current_user.username%>">
                     </a>
                     <span class="user_name">
-                        <a class="dark" href="/user/mannysys"><%=current_user.username%></a>
+                        <a class="dark" href="/user/<%=current_user._id%>"><%=current_user.username%></a>
                     </span>
-                    <!--<div class="board clearfix">-->
-                        <!--<div class="floor">-->
-                            <!--<span class="big">积分: 5 </span>-->
-                        <!--</div>-->
-                    <!--</div>-->
+                    <div class="board clearfix">
+                        <div class="floor">
+                            <span class="big">鱼蛋: 5 </span>
+                        </div>
+                    </div>
                     <div class="space clearfix"></div>
-                    <!--<span class="signature">-->
-                        <!--“-->
-                            <!--这家伙很懒，什么个性签名都没有留下。-->
-                        <!--”-->
-                    <!--</span>-->
+                    <span class="signature">
+                        <%=current_user.signature%>
+                    </span>
                 </div>
             </div>
         </div>

@@ -1,0 +1,13 @@
+<div class="cell">
+    <a class="user_avatar pull-left" href="/user/<%=topic.username._id%>" style="margin-right:20px;">
+        <img src="<%=config.site_avatar%><%=topic.username.avatar%>" title="<%=topic.username.username%>">
+    </a>
+    <span class="last_time pull-right">
+        <span class="last_active_time"><%=topic.timeStr%></span>
+    </span>
+    <div class="topic_title_wrapper">
+        <a class="topic_title" href="/topic/<%=topic._id%>" title="<%=topic.title%>">
+            <%=topic.title%>
+        </a>
+    </div>
+</div>

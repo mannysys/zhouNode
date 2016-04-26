@@ -5,6 +5,7 @@ var validator = require('validator');
 var eventproxy = require('eventproxy');
 var UserModel = require('../models/UserModel');
 var tools = require('../common/tools');
+var config = require('../config');
 
 //显示注册页面
 exports.showSignup = function(req, res){
@@ -56,14 +57,7 @@ exports.signup = function(req, res){
             return;
         }
         var keypass = tools.encrypt(pass);//密码加密
-        var default_avatar=[
-            'avatar_default_1.png',
-            'avatar_default_2.png',
-            'avatar_default_3.png',
-            'avatar_default_4.png',
-            'avatar_default_5.png',
-            'avatar_default_6.png'
-        ];
+        var default_avatar = config.default_avatar;
         var random_num = Math.floor((Math.random()*default_avatar.length));
 
         //将数据保存到数据库

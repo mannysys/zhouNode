@@ -4,7 +4,11 @@
 var validator = require('validator');
 var eventproxy = require('eventproxy');
 var UserModel = require('../models/UserModel');
+var TopicModel = require('../models/TopicModel');
+var ReplyModel = require('../models/ReplyModel');
+var _ = require('lodash');
 var tools = require('../common/tools');
+
 
 //显示用户设置页面
 exports.myset = function(req, res){
@@ -28,8 +32,10 @@ exports.setting = function(req, res){
         var location = validator.trim(req.body.location);
         var weibo = validator.trim(req.body.weibo);
         var signature = validator.trim(req.body.signature);
+        var defaultAvatar = validator.trim(req.body.defaultAvatar);
 
         UserModel.getUserById(current_user._id, function(err, user){
+            user.avatar = defaultAvatar;
             user.location = location;
             user.weibo = weibo;
             user.signature = signature;
@@ -39,7 +45,7 @@ exports.setting = function(req, res){
                     return ep.emit('info_error', '保存设置失败');
                 }
                 req.session.user = user.toObject({virtual: true}); //更新session
-                res.render('user/myset',{success: '保存设置成功', current_user: current_user});
+                res.render('user/myset',{success: '保存设置成功', current_user: user});
             });
 
         });
@@ -68,6 +74,39 @@ exports.setting = function(req, res){
         });
     }
 
+}
+
+exports.user = function(req, res){
+    var uid = validator.trim(req.params.uname);
+    var ep = new eventproxy(); //异步事件
+    if(!uid){
+        return;
+    }
+    var option = {limit: 5, sort: '-insertTime'};
+    //查询该用户的发的文章
+    TopicModel.getUserTopic(uid, option, function(err, topics){
+        topics = _.map(topics, function(topic){
+            topic.timeStr =  tools.formatDate(topic.insertTime);
+            return topic;
+        });
+        //抛出事件，携带文章内容数据
+        ep.emit('user_topic_ok', topics);
+    });
+    //查询该用户发的评论
+    ReplyModel.getUserReply(uid, option, function(err, replys){
+        replys = _.map(replys, function(reply){
+            reply.timeStr =  tools.formatDate(reply.insertTime);
+            return reply;
+        });
+        //抛出事件，携带评论数据
+        ep.emit('user_reply_ok', replys);
+    });
+
+    //接收抛出事件和数据
+    ep.all('user_topic_ok', 'user_reply_ok', function(userTopic, userReply){
+
+        res.render('user/home', {userTopic: userTopic, userReply: userReply, current_user:req.session.user});
+    });
 
 
 }

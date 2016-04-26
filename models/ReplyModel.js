@@ -22,9 +22,15 @@ ReplySchema.statics.addReply = function(reply, callback){
     this.create(reply, callback);
 };
 
-//查询只返回一条数据
+//查询符合条件所有数据
 ReplySchema.statics.getReplys = function(topicId, callback){
     this.find({topicId: topicId}).populate('username').exec(callback);
+};
+
+
+//根据用户查询发的评论
+ReplySchema.statics.getUserReply = function(uid, option, callback){
+    this.find({username: uid}, {}, option).populate('username').exec(callback);
 };
 
 

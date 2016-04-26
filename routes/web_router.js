@@ -40,7 +40,8 @@ router.get('/signup', signController.showSignup)
     .get('/myset', auth.requireLogin, mysetController.myset)
     //处理用户设置修改
     .post('/myset', auth.requireLogin, mysetController.setting)
-
+    //查看用户主页
+    .get('/user/:uname', auth.requireLogin, mysetController.user)
     // 斗鱼弹幕页面
     .get('/acfun', acfunController.showAcfun)
     // 关于

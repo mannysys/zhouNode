@@ -32,7 +32,10 @@ TopicSchema.statics.getTopic = function(topicId, callback){
     this.findOne({_id: topicId}).populate('username').exec(callback);
 };
 
-
+//根据用户查询发的文章
+TopicSchema.statics.getUserTopic = function(uid, option, callback){
+    this.find({username: uid}, {}, option).populate('username').exec(callback);
+};
 
 
 module.exports = mongoose.model('Topic', TopicSchema); //生成数据模型
