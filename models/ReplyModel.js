@@ -23,8 +23,8 @@ ReplySchema.statics.addReply = function(reply, callback){
 };
 
 //查询符合条件所有数据
-ReplySchema.statics.getReplys = function(topicId, callback){
-    this.find({topicId: topicId}).populate('username').exec(callback);
+ReplySchema.statics.getReplys = function(topicId, option, callback){
+    this.find({topicId: topicId}, {}, option).populate('username').exec(callback);
 };
 
 

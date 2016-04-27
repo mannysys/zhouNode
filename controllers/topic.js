@@ -54,8 +54,9 @@ exports.detail = function(req, res){
     ReplyModel.count({topicId: topicId}, function(err, count){
         ep.emit('reply_count_ok', count);
     });
+    var option = {limit: 80, sort: '-insertTime'};
     //获取出文章评论列表
-    ReplyModel.getReplys(topicId, function(err, replys){
+    ReplyModel.getReplys(topicId, option, function(err, replys){
         replys = _.map(replys, function(reply){
             reply.timeStr = tools.formatDate(reply.insertTime);
             return reply;
